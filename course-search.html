@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">Academic Portal</div>
+    <nav class="nav-menu">
+        <a href="home.html">Home</a>
+        <a href="course-search.html">Course Search</a>
+        <a href="registration.html">Student Registration</a>
+        <a href="schedules.html">Instructor Schedules</a>
+    </nav>
+</header>
+
+<main class="main-container">
+
+    <h1>Course Search</h1>
+    <p>Search for courses by department, instructor, or course number.</p>
+
+    <div class="search-form">
+        <label>Department</label><br>
+        <input type="text" id="department" placeholder="INFO"><br><br>
+
+        <label>Instructor</label><br>
+        <input type="text" id="instructor" placeholder="Smith"><br><br>
+
+        <label>Course Number</label><br>
+        <input type="text" id="courseNumber" placeholder="101"><br><br>
+
+        <button class="primary-btn" onclick="searchCourses()">Search</button>
+    </div>
+
+    <hr><br>
+
+    <div id="results">
+        <p>Search results will appear here.</p>
+    </div>
+
+</main>
+
+<script>
+    const courses = [
+        {
+            department: "INFO",
+            number: "101",
+            instructor: "Smith",
+            credits: 3,
+            prerequisites: "None",
+            modality: "In-Person",
+            maxEnrollment: 30
+        },
+        {
+            department: "INFO",
+            number: "202",
+            instructor: "Nguyen",
+            credits: 4,
+            prerequisites: "INFO 101",
+            modality: "Hybrid",
+            maxEnrollment: 25
+        },
+        {
+            department: "CS",
+            number: "215",
+            instructor: "Johnson",
+            credits: 3,
+            prerequisites: "CS 111",
+            modality: "Online",
+            maxEnrollment: 40
+        }
+    ];
+    
+    function searchCourses() {
+    
+        const dept = document.getElementById("department").value.toLowerCase();
+        const instructor = document.getElementById("instructor").value.toLowerCase();
+        const number = document.getElementById("courseNumber").value.toLowerCase();
+    
+        const filtered = courses.filter(course =>
+            (dept === "" || course.department.toLowerCase().includes(dept)) &&
+            (instructor === "" || course.instructor.toLowerCase().includes(instructor)) &&
+            (number === "" || course.number.includes(number))
+        );
+    
+        let output = "";
+    
+        if (filtered.length === 0) {
+            output = "<p>No courses found.</p>";
+        } else {
+            filtered.forEach(course => {
+                output += `
+                    <div>
+                        <strong>${course.department} ${course.number}</strong><br>
+                        Instructor: ${course.instructor}<br>
+                        Credit Hours: ${course.credits}<br>
+                        Prerequisites: ${course.prerequisites}<br>
+                        Modality: ${course.modality}<br>
+                        Max Enrollment: ${course.maxEnrollment}
+                        <hr>
+                    </div>
+                `;
+            });
+        }
+    
+        document.getElementById("results").innerHTML = output;
+    }
+    </script>    
+
+</body>
+</html>

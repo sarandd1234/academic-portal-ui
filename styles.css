@@ -47,3 +47,10 @@ body {
     margin-right: 15px;
     display: inline-block;
 }
+/* Course Search Page */
+.search-form input {
+    padding: 8px;
+    width: 250px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
