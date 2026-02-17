@@ -10,7 +10,7 @@ Reposition for Info-465 group between Saran, Tiffany, Madilynn, and Jeremy
 - The Home Screen serves as the entry point to the system and provides navigation to core functionalities: course search, student registration, and instructor schedules.
 
 **HTML/CSS/JS Techniques Used:**
-- Semantic HTML5 structure (<header>, <nav>, <main>)
+- Semantic HTML5 structure (header, nav, main)
 - External CSS (styles.css) for shared visual styling
 - Flexbox for header layout and navigation alignment
 - Styled anchor links as buttons for navigation
@@ -30,7 +30,7 @@ Reposition for Info-465 group between Saran, Tiffany, Madilynn, and Jeremy
 - The Course Search Screen lets users search for courses by department, instructor, or course number and displays important course details such as credit hours, prerequisites, modality, and maximum enrollment.
 
 **HTML/CSS/JS Techniques Used:**
-- Semantic HTML5 structure (<header>, <nav>, and <main>)
+- Semantic HTML5 structure (header, nav, and main)
 - Applied the shared external CSS (styles.css) to maintain consistent fonts, colors, spacing, and button styling across pages
 - Created input fields and a search button for user interaction
 - Used JavaScript with mock course data stored in arrays to simulate a course database
@@ -38,4 +38,4 @@ Reposition for Info-465 group between Saran, Tiffany, Madilynn, and Jeremy
 - Used DOM manipulation to display search results without reloading the page
 
 **Design Decisions / Challenges:**
-One challenge was making sure the page stayed consistent with the shared template while still adding interactive functionality. I focused on only editing the content inside the <main> section to avoid breaking the shared layout. Another decision was keeping the search interface simple and easy to understand so users could quickly find courses without unnecessary complexity. Since backend functionality was out of scope, mock data was used to realistically demonstrate how the system would work.
+One challenge was making sure the page stayed consistent with the shared template while still adding interactive functionality. I focused on only editing the content inside the main section to avoid breaking the shared layout. Another decision was keeping the search interface simple and easy to understand so users could quickly find courses without unnecessary complexity. Since backend functionality was out of scope, mock data was used to realistically demonstrate how the system would work.
