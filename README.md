@@ -1,7 +1,8 @@
-# Info-465-repo
+# academic-portal-ui
 Reposition for Info-465 group between Saran, Tiffany, Madilynn, and Jeremy
 
 (SARAN DIAWARA)  – Home Screen
+
 **Contribution:**
 - Designed and implemented the Home Screen, including navigation structure and layout consistency elements. Established the shared visual design (header, navigation, font, colors, and button styles) used across all pages.
 
@@ -15,8 +16,7 @@ Reposition for Info-465 group between Saran, Tiffany, Madilynn, and Jeremy
 - Styled anchor links as buttons for navigation
 - Consistent typography, color palette, and spacing
 
-**Design Decisions / Challenges:
-**
+**Design Decisions/ Challenges:**
 - Ensured the header and navigation would be reusable across all pages for consistency
 - Chose professional, high-contrast colors to improve readability
 - Kept the Home Screen layout simple to allow teammates to build their pages without conflicts
