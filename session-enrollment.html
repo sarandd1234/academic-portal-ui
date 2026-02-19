@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Session Enrollment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">Academic Portal</div>
+    <nav class="nav-menu">
+        <a href="home.html">Home</a>
+        <a href="course-search.html">Course Search</a>
+        <a href="registration.html">Student Registration</a>
+        <a href="session-enrollment.html">Session Enrollment</a>
+    </nav>
+</header>
+
+<main class="main-container">
+
+    <h1>Session Enrollment Screen</h1>
+
+    <h3>Select Session</h3>
+
+    <select id="sessionSelect" onchange="displayEnrollment()">
+        <option value="">-- Select Session --</option>
+        <option value="INFO-101">INFO 101</option>
+        <option value="INFO-202">INFO 202</option>
+        <option value="CS-215">CS 215</option>
+    </select>
+
+    <hr><br>
+
+    <div id="enrollmentResults">
+        <p>No session selected.</p>
+    </div>
+
+</main>
+
+<script>
+
+function getEnrollments() {
+    const data = localStorage.getItem("enrollments");
+    return data ? JSON.parse(data) : {};
+}
+
+function displayEnrollment() {
+
+    const selected = document.getElementById("sessionSelect").value;
+
+    if (!selected) {
+        document.getElementById("enrollmentResults").innerHTML =
+            "<p>No session selected.</p>";
+        return;
+    }
+
+    const [dept, number] = selected.split("-");
+    const enrollments = getEnrollments();
+
+    let output = `<h3>Students Enrolled in ${dept} ${number}</h3>`;
+    let found = false;
+
+    for (const studentID in enrollments) {
+
+        const courses = enrollments[studentID];
+
+        const isEnrolled = courses.some(course =>
+            course.department === dept && course.number === number
+        );
+
+        if (isEnrolled) {
+            found = true;
+            output += `<div>Student #${studentID}</div>`;
+        }
+    }
+
+    if (!found) {
+        output += "<p>No students enrolled.</p>";
+    }
+
+    document.getElementById("enrollmentResults").innerHTML = output;
+}
+
+</script>
+
+</body>
+</html>
