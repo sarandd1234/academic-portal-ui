@@ -58,6 +58,27 @@ A challenge I faced while working on this page of the project was making sure it
 - Stored course data in a JavaScript array of objects to simulate a session database
 - Prevented duplicate registrations using .some()
 
+(JEREMY SILES) - Instructor Schedule Screen
+**Contribution**
+Built the screen for Instructors to check what classes they are assigned. Implemented a login/logout function. Ensured that the instructor schedule screen to be hidden behind an authentication login checkpoint. 
+
+**A one-line summary of what each screen does.**
+The Instructor schedule screen permits instructors to log in and view assigned teaching sessions with information regarding the course, room, modality, credits, and size of the class.
+
+**What HTML/CSS/JS elements or techniques were used.**
+- HTML  - header, nav, main, form,
+        -  Consistent navigation menu
+        -  Form inputs for login
+- CSS   - Simple border for login box
+        - Consistent coloring
+        - Padding and margin for proper spacing.
+- JS    - Implemented login/logout functionality
+        - Created calculations to display class size
+        - Displayed the proper table for the correct instructor
+
+**Any design challenges or decisions.**
+One of the challenges was determining what information to display. I had a bunch of ideas that I had to think if they were even feasible, the more I thought about it the more going for a more simple design made sense. I ended up having some cards that displayed information that I chose would be displaying the courses the instructor has to teach, the total students they have to connect to, and how popular is the professor. I also used had trouble working the login/logout feature.
+
 (SARAN DIAWARA) – Session Enrollment Screen
 
 **Contribution:**
@@ -81,6 +102,3 @@ A challenge I faced while working on this page of the project was making sure it
 - Focused on dynamic content rendering instead of static hardcoded output
 - Maintained consistent navigation and visual styling across screens
 - Prioritized readability and logical organization of enrollment information
-
-
-
