@@ -42,11 +42,23 @@ One challenge was making sure the page stayed consistent with the shared templat
 
 (MADILYNN CRAIG) - Student Registration Screen
 
+(MADILYNN CRAIG) - Student Registration Screen
+
 **Contribution:**
 - Built and implemented the Student Registration Screen, which allows students to browse available courses and register for those with available seats. I designed the screen to display the same courses available on the Course Search screen. JavaScript was used to create a log in and out feature as well as the ability to enroll in courses that actively reflect seat availability.
 
 **Screen Summary:**
-- The Student Registration Screen allows students to log in using their Student Number and register for courses with available seats. When the student is logged in, the courses are displayed along with the number of available seats remaining. If the course is full, the student will receive an error when trying to enroll. 
+- The Student Registration Screen allows students to log in using their Student Number and register for courses with available seats. When the student is logged in, the courses are displayed along with the number of available seats remaining. If the course is full, the student will receive an error when trying to enroll.
+
+**Design Decisions / Challenges:**
+A challenge I faced while working on this page of the project was making sure it worked with my teammates' code. I made the decision to include the searchable courses from the Course Search page as available courses for registration to ensure that the system stays cohesive. Otherwise, it would be confusing for a student using the system if the Course Search results and the courses available at the Registration page were different. 
+
+**HTML/CSS/JS Techniques Used:**
+- Semantic HTML5 structure (header, nav, and main) for logical interface organization
+- Applied the shared external CSS (style.css) to maintain consistent visuals and elements
+- Created form input validation to ensure a student number is entered before submission
+- Stored course data in a JavaScript array of objects to simulate a session database
+- Prevented duplicate registrations using .some()
 
 (SARAN DIAWARA) – Session Enrollment Screen
 
