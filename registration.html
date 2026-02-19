@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">Academic Portal</div>
+    <nav class="nav-menu">
+        <a href="home.html">Home</a>
+        <a href="course-search.html">Course Search</a>
+        <a href="registration.html">Student Registration</a>
+        <a href="schedules.html">Instructor Schedules</a>
+    </nav>
+</header>
+
+<main class="main-container">
+   
+    <h1>Student Registration</h1>
+
+    <!--Login Screen-->
+    <div id="loginSection">
+        <label>Student Number:</label><br>
+        <input type="text" id="studentnumber" placeholder="Enter your student number"><br><br>
+        <button class="primary-btn" onclick="login()">Login</button>
+    </div>
+
+    <!--Student Dashboard-->
+    <div id="studentSection" style="display:none;">
+
+        <h2>
+            Logged in as Student #<span id="studentID"></span>
+            <button class="primary-btn" onclick="logout()">Logout</button>
+        </h2>
+
+        <h3>Your Enrolled Sessions</h3>
+        <div id="enrolledCourses">
+            <p>No enrollments yet.</p>
+        </div>
+
+        <hr><br>
+
+        <h3>Available Sessions</h3>
+        <div id="availableCourses"></div>
+
+    </div>
+
+</main>
+
+<script>
+
+console.log("Registration script loaded");
+
+/* Same courses from your course search page */
+const courses = [
+    {
+        department: "INFO",
+        number: "101",
+        instructor: "Smith",
+        maxEnrollment: 2
+    },
+    {
+        department: "INFO",
+        number: "202",
+        instructor: "Nguyen",
+        maxEnrollment: 2
+    },
+    {
+        department: "CS",
+        number: "215",
+        instructor: "Johnson",
+        maxEnrollment: 2
+    }
+];
+
+let currentStudent = null;
+
+
+/* LOGIN FUNCTION */
+function login() {
+
+    const studentNumber = document.getElementById("studentnumber").value.trim();
+
+    if (studentNumber === "") {
+        alert("Please enter a student number.");
+        return;
+    }
+
+    currentStudent = studentNumber;
+
+    document.getElementById("studentID").innerText = studentNumber;
+
+    document.getElementById("loginSection").style.display = "none";
+    document.getElementById("studentSection").style.display = "block";
+
+    displayEnrolledCourses();
+    displayAvailableCourses();
+}
+
+/* LOGOUT FUNCTION */
+function logout() {
+
+    currentStudent = null;
+
+    document.getElementById("studentnumber").value = "";
+
+    document.getElementById("studentSection").style.display = "none";
+    document.getElementById("loginSection").style.display = "block";
+
+}
+
+/* GET STUDENT ENROLLMENTS FROM STORAGE */
+function getEnrollments() {
+
+    const data = localStorage.getItem("enrollments");
+
+    return data ? JSON.parse(data) : {};
+}
+
+
+/* SAVE ENROLLMENTS */
+function saveEnrollments(data) {
+
+    localStorage.setItem("enrollments", JSON.stringify(data));
+}
+
+
+/* DISPLAY ENROLLED COURSES */
+function displayEnrolledCourses() {
+
+    const enrollments = getEnrollments();
+
+    const studentCourses = enrollments[currentStudent] || [];
+
+    let output = "";
+
+    if (studentCourses.length === 0) {
+
+        output = "<p>No enrollments yet.</p>";
+
+    } else {
+
+        studentCourses.forEach(course => {
+
+            output += `
+                <div>
+                    ${course.department} ${course.number} - ${course.instructor}
+                </div>
+            `;
+        });
+    }
+
+    document.getElementById("enrolledCourses").innerHTML = output;
+}
+
+
+/* DISPLAY AVAILABLE COURSES */
+function displayAvailableCourses() {
+
+    const enrollments = getEnrollments();
+
+    let output = "";
+
+    courses.forEach(course => {
+
+        const enrolledStudents = Object.values(enrollments)
+            .flat()
+            .filter(c => c.department === course.department && c.number === course.number)
+            .length;
+
+        output += `
+            <div>
+                ${course.department} ${course.number}
+                (${enrolledStudents}/${course.maxEnrollment})
+                <button class="primary-btn"
+                    onclick="registerCourse('${course.department}', '${course.number}', '${course.instructor}')">
+                    Register
+                </button>
+            </div>
+            <br>
+        `;
+    });
+
+    document.getElementById("availableCourses").innerHTML = output;
+}
+
+
+/* REGISTER COURSE WITH VALIDATION */
+function registerCourse(department, number, instructor) {
+
+    const enrollments = getEnrollments();
+
+    if (!enrollments[currentStudent]) {
+        enrollments[currentStudent] = [];
+    }
+
+    const studentCourses = enrollments[currentStudent];
+
+    /* Prevent duplicate registration */
+    const alreadyRegistered = studentCourses.some(course =>
+        course.department === department && course.number === number
+    );
+
+    if (alreadyRegistered) {
+
+        alert("You are already registered for this session.");
+        return;
+    }
+
+    /* Check enrollment limit */
+    const totalEnrolled = Object.values(enrollments)
+        .flat()
+        .filter(course =>
+            course.department === department && course.number === number
+        ).length;
+
+    const courseInfo = courses.find(c =>
+        c.department === department && c.number === number
+    );
+
+    if (totalEnrolled >= courseInfo.maxEnrollment) {
+
+        alert("This session is full.");
+        return;
+    }
+
+    /* Register student */
+    studentCourses.push({
+        department,
+        number,
+        instructor
+    });
+
+    saveEnrollments(enrollments);
+
+    alert("Registration successful.");
+
+    displayEnrolledCourses();
+    displayAvailableCourses();
+}
+
+</script>
+
+</body>
+</html>
