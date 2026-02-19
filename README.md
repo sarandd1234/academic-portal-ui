@@ -47,3 +47,29 @@ Reposition for Info-465 group between Saran, Tiffany, Madilynn, and Jeremy
 
 **Design Decisions / Challenges:**
 One challenge was making sure the page stayed consistent with the shared template while still adding interactive functionality. I focused on only editing the content inside the main section to avoid breaking the shared layout. Another decision was keeping the search interface simple and easy to understand so users could quickly find courses without unnecessary complexity. Since backend functionality was out of scope, mock data was used to realistically demonstrate how the system would work.
+
+(SARAN DIAWARA) – Session Enrollment Screen
+
+**Contribution:**
+- Designed and implemented the Session Enrollment Screen, including the session selection interface and enrollment display logic. Integrated the screen with the existing enrollment storage mechanism to allow authorized users to view which students are registered for a selected session. Maintained layout and navigation consistency with the shared design used across all pages.
+
+**Screen Summary:**
+- The Session Enrollment Screen allows users to select an academic session and view the list of students enrolled in that session. Enrollment data is retrieved dynamically from client-side storage and presented in a clear, organized format.
+
+**HTML/CSS/JS Techniques Used:**
+- Semantic HTML5 structure (<header>, <nav>, <main>)
+- External CSS (styles.css) for shared visual styling
+- Dropdown menu (<select>) for session selection
+- JavaScript for dynamic enrollment filtering and rendering
+- DOM manipulation for updating displayed results
+- localStorage for client-side data persistence
+- Event-driven interaction using onchange
+
+**Design Decisions/ Challenges:**
+- Ensured the screen reused the same enrollment data model as the registration page
+- Designed the session selector to keep the interface simple and intuitive
+- Focused on dynamic content rendering instead of static hardcoded output
+- Maintained consistent navigation and visual styling across screens
+- Prioritized readability and logical organization of enrollment information
+
+
