@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instructor Schedule - Academic Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /*Fit theme of the styles css file*/
+        .login-section {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            max-width: 400px;
+            margin-bottom: 30px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border: 1px solid #ddd;
+        }
+
+        .schedule-table th {
+            background-color: #1e2a38;
+            color: white;
+            padding: 8px;
+            text-align: left;
+            font-weight: normal;
+        }
+
+        .schedule-table td {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .instructor-info {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-left: 3px solid #c89b3c;
+        }
+
+        .schedule-summary {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .summary-card {
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+            flex: 1;
+            text-align: center;
+        }
+
+        .summary-card h3 {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+            font-weight: normal;
+            color: #666;
+        }
+
+        .summary-card .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e2a38;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">Academic Portal</div>
+    <nav class="nav-menu">
+        <a href="home.html">Home</a>
+        <a href="course-search.html">Course Search</a>
+        <a href="registration.html">Student Registration</a>
+        <a href="schedules.html">Instructor Schedules</a>
+    </nav>
+</header>
+
+<main class="main-container">
+    <h1>Instructor Schedule</h1>
+    
+    <!-- Login Section -->
+    <div class="login-section" id="loginSection">
+        <h3>Instructor Login</h3>
+        <p>Please log in to view your teaching schedule.</p>
+        
+        <label>Instructor ID:</label><br>
+        <input type="text" id="instructorId" placeholder="e.g., smith" style="width: 100%; margin-bottom: 10px;"><br>
+        
+        <label>Password:</label><br>
+        <input type="password" id="password" placeholder="••••••••" style="width: 100%; margin-bottom: 15px;"><br>
+        
+        <button class="primary-btn" onclick="loginInstructor()">Log In</button>
+        <small style="display: block; margin-top: 10px; color: #666;">Try "Smith", "Nguyen", or "Johnson" (any password works)</small>
+    </div>
+    
+    <!-- Schedule Section (hidden until login) -->
+    <div id="scheduleSection" style="display: none;">
+        <div class="instructor-info" id="instructorWelcome">
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <button class="primary-btn" onclick="logout()">Logout</button>
+        </div>
+        
+        <!-- Summary Cards -->
+        <div class="schedule-summary" id="summaryCards">
+        </div>
+        
+        <!-- Schedule Table -->
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Room</th>
+                    <th>Modality</th>
+                    <th>Credits</th>
+                    <th>Enrolled</th>
+                </tr>
+            </thead>
+            <tbody id="scheduleBody">
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script>
+    // Data from course_search 
+    const schedules = {
+        'Smith': {
+            name: 'Smith',
+            courses: [
+                {
+                    course: 'INFO 101',
+                    room: 'Hall 210',
+                    modality: 'In-Person',
+                    credits: 3,
+                    enrolled: 28,
+                    maxEnroll: 30
+                }
+            ]
+        },
+        'Nguyen': {
+            name: 'Nguyen',
+            courses: [
+                {
+                    course: 'INFO 202',
+                    room: 'Hall 215',
+                    modality: 'Hybrid',
+                    credits: 4,
+                    enrolled: 22,
+                    maxEnroll: 25
+                }
+            ]
+        },
+        'Johnson': {
+            name: 'Johnson',
+            courses: [
+                {
+                    course: 'CS 215',
+                    room: 'Tech 305',
+                    modality: 'Online',
+                    credits: 3,
+                    enrolled: 35,
+                    maxEnroll: 40
+                }
+            ]
+        }
+    };
+
+    function loginInstructor() {
+        const instructorId = document.getElementById('instructorId').value;
+        
+        const matchedId = Object.keys(schedules).find(
+            id => id.toLowerCase() === instructorId.toLowerCase()
+        );
+        
+        if (matchedId) {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('scheduleSection').style.display = 'block';
+            
+            const instructor = schedules[matchedId];
+            document.getElementById('instructorWelcome').innerHTML = `
+                <strong>Welcome, ${instructor.name}</strong><br>
+            `;
+            
+            let tableHtml = '';
+            let totalStudents = 0;
+            let totalCapacity = 0;
+            
+            instructor.courses.forEach(course => {
+                totalStudents += course.enrolled;
+                totalCapacity += course.maxEnroll;
+                
+                tableHtml += `
+                    <tr>
+                        <td><strong>${course.course}</strong></td>
+                        <td>${course.room}</td>
+                        <td>${course.modality}</td>
+                        <td>${course.credits}</td>
+                        <td>${course.enrolled}/${course.maxEnroll}</td>
+                    </tr>
+                `;
+            });
+            
+            document.getElementById('scheduleBody').innerHTML = tableHtml;
+            
+            document.getElementById('summaryCards').innerHTML = `
+                <div class="summary-card">
+                    <h3>Courses</h3>
+                    <div class="number">${instructor.courses.length}</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Total Students</h3>
+                    <div class="number">${totalStudents}</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Fill Rate</h3>
+                    <div class="number">${Math.round((totalStudents/totalCapacity)*100)}%</div>
+                </div>
+            `;
+        } else {
+            alert('Invalid Instructor ID. Try: Smith, Nguyen, or Johnson');
+        }
+    }
+
+    function logout() {
+        document.getElementById('loginSection').style.display = 'block';
+        document.getElementById('scheduleSection').style.display = 'none';
+        document.getElementById('instructorId').value = '';
+        document.getElementById('password').value = '';
+    }
+</script>
+
+</body>
+</html>
