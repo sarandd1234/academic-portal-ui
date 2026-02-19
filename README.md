@@ -57,7 +57,7 @@ One challenge was making sure the page stayed consistent with the shared templat
 - The Session Enrollment Screen allows users to select an academic session and view the list of students enrolled in that session. Enrollment data is retrieved dynamically from client-side storage and presented in a clear, organized format.
 
 **HTML/CSS/JS Techniques Used:**
-- Semantic HTML5 structure (<header>, <nav>, <main>)
+- Semantic HTML5 structure (header, nav, main)
 - External CSS (styles.css) for shared visual styling
 - Dropdown menu (<select>) for session selection
 - JavaScript for dynamic enrollment filtering and rendering
@@ -71,5 +71,4 @@ One challenge was making sure the page stayed consistent with the shared templat
 - Focused on dynamic content rendering instead of static hardcoded output
 - Maintained consistent navigation and visual styling across screens
 - Prioritized readability and logical organization of enrollment information
-
-
+  
