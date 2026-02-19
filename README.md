@@ -59,14 +59,18 @@ One challenge was making sure the page stayed consistent with the shared templat
 **HTML/CSS/JS Techniques Used:**
 - Semantic HTML5 structure (header, nav, main)
 - External CSS (styles.css) for shared visual styling
-- Dropdown menu (<select>) for session selection
+- Dropdown menu for session selection
 - JavaScript for dynamic enrollment filtering and rendering
 - DOM manipulation for updating displayed results
 - localStorage for client-side data persistence
 - Event-driven interaction using onchange
 
-Design Decisions/Challenges: 
+**Design Decisions / Challenges:**
 - Ensured the screen reused the same enrollment data model as the registration page
 - Designed the session selector to keep the interface simple and intuitive
-- Focused on dynamic content rendering instead of static hardcoded output. Maintained consistent navigation and visual styling across screens. Prioritized readability and logical organization of enrollment information
-  
+- Focused on dynamic content rendering instead of static hardcoded output
+- Maintained consistent navigation and visual styling across screens
+- Prioritized readability and logical organization of enrollment information
+
+
+
