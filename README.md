@@ -42,8 +42,6 @@ One challenge was making sure the page stayed consistent with the shared templat
 
 (MADILYNN CRAIG) - Student Registration Screen
 
-(MADILYNN CRAIG) - Student Registration Screen
-
 **Contribution:**
 - Built and implemented the Student Registration Screen, which allows students to browse available courses and register for those with available seats. I designed the screen to display the same courses available on the Course Search screen. JavaScript was used to create a log in and out feature as well as the ability to enroll in courses that actively reflect seat availability.
 
