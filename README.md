@@ -29,6 +29,14 @@ Reposition for Info-465 group between Saran, Tiffany, Madilynn, and Jeremy
 **Screen Summary:**
 - The Course Search Screen lets users search for courses by department, instructor, or course number and displays important course details such as credit hours, prerequisites, modality, and maximum enrollment.
 
+(MADILYNN CRAIG) - Student Registration Screen
+
+**Contribution:**
+- Built and implemented the Student Registration Screen, which allows students to browse available courses and register for those with available seats. I designed the screen to display the same courses available on the Course Search screen. JavaScript was used to create a log in and out feature as well as the ability to enroll in courses that actively reflect seat availability.
+
+**Screen Summary:**
+- The Student Registration Screen allows students to log in using their Student Number and register for courses with available seats. When the student is logged in, the courses are displayed along with the number of available seats remaining. If the course is full, the student will receive an error when trying to enroll. 
+
 **HTML/CSS/JS Techniques Used:**
 - Semantic HTML5 structure (header, nav, and main)
 - Applied the shared external CSS (styles.css) to maintain consistent fonts, colors, spacing, and button styling across pages
