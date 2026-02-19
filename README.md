@@ -65,10 +65,8 @@ One challenge was making sure the page stayed consistent with the shared templat
 - localStorage for client-side data persistence
 - Event-driven interaction using onchange
 
-**Design Decisions/ Challenges:**
+Design Decisions/Challenges: 
 - Ensured the screen reused the same enrollment data model as the registration page
 - Designed the session selector to keep the interface simple and intuitive
-- Focused on dynamic content rendering instead of static hardcoded output
-- Maintained consistent navigation and visual styling across screens
-- Prioritized readability and logical organization of enrollment information
+- Focused on dynamic content rendering instead of static hardcoded output. Maintained consistent navigation and visual styling across screens. Prioritized readability and logical organization of enrollment information
   
